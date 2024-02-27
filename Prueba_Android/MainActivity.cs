@@ -39,7 +39,7 @@ namespace Prueba_Android
             // Aquí debes realizar la lógica para realizar la petición API para check in
             // Puedes utilizar HttpClient para realizar la petición HTTP
             // Por ejemplo:
-            string apiUrl = "http://127.0.0.1:8000/api/v1/uniq/Practicante/" + codigo; 
+            string apiUrl = "https://appv2.redesdevalor.com/api/v1/uniq/Practicante/" + codigo; 
             List<Practicante> jsonResponse = await GetApiResponse(apiUrl);
             string[] text = new string[11];
             // Aquí puedes trabajar con los datos, por ejemplo, mostrarlos en un cuadro de texto
@@ -72,7 +72,7 @@ namespace Prueba_Android
             formData.Add(new StringContent(practicantes[3], Encoding.UTF8), "codigo");
             formData.Add(new StringContent(fecha, Encoding.UTF8), "fecha");
             formData.Add(new StringContent(hora, Encoding.UTF8), "hora_llegada");
-            formData.Add(new StringContent(hora, Encoding.UTF8), "hora_salida");
+            formData.Add(new StringContent("0", Encoding.UTF8), "hora_salida");
 
             formData.Add(new StringContent("0", Encoding.UTF8), "horas_trabajadas");
             formData.Add(new StringContent("0", Encoding.UTF8), "minutos_trabajados");
@@ -88,7 +88,7 @@ namespace Prueba_Android
                 try
                 {
                     // Enviar la solicitud POST a la URL de destino
-                    HttpResponseMessage response = await client.PostAsync("http://localhost:8000/api/v1/newUser/Practicante", formData);
+                    HttpResponseMessage response = await client.PostAsync("https://appv2.redesdevalor.com/api/v1/newUser/Practicante", formData);
 
                     // Leer la respuesta
                     string responseBody = await response.Content.ReadAsStringAsync();
